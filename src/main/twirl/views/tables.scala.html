@@ -1,4 +1,15 @@
-@(name: String)
-@layouts.html.default("Title", "User") {
-<p>CONGRATULATIONS, @name!</p>
+@(name: String, tables: Seq[String])
+@layouts.html.default("Title", "Tables") {
+<p>Welcome, @name!</p>
+<p>New table:</p>
+<form action="/tables/new" method="post">
+    <input type="text" name="table">
+    <input type="submit">
+</form>
+<p>List of tables:</p>
+<ul>
+    @for(table <- tables) {
+        <li>@table</li>
+    }
+</ul>
 }
