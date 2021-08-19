@@ -3,7 +3,7 @@ val ScalatraVersion = "2.8.0"
 ThisBuild / scalaVersion := "2.13.4"
 ThisBuild / organization := "org.dedkot"
 
-lazy val hello = (project in file("."))
+lazy val planningPoker = (project in file("."))
   .settings(
     name := "PlanningPokerWebApp",
     version := "0.1",
