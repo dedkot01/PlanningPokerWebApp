@@ -46,13 +46,15 @@ class MainServlet extends ScalatraServlet with JValueResult with JacksonJsonSupp
       def receive: AtmoReceive = {
         case Connected =>
           println("Client %s is connected" format uuid)
-          broadcast(("author" -> "Someone") ~ ("message" -> "joined the room") ~ ("time" -> new Date().getTime.toString), Everyone)
+          //broadcast(("author" -> "Someone") ~ ("message" -> "joined the room") ~ ("time" -> new Date().getTime.toString), Everyone)
 
         case Disconnected(ClientDisconnected, _) =>
-          broadcast(("author" -> "Someone") ~ ("message" -> "has left the room") ~ ("time" -> new Date().getTime.toString), Everyone)
+          println("Client %s is disconnected" format uuid)
+          //broadcast(("author" -> "Someone") ~ ("message" -> "has left the room") ~ ("time" -> new Date().getTime.toString), Everyone)
 
         case Disconnected(ServerDisconnected, _) =>
           println("Server disconnected the client %s" format uuid)
+
         case _: TextMessage =>
           send(("author" -> "system") ~ ("message" -> "Only json is allowed") ~ ("time" -> new Date().getTime.toString))
 
